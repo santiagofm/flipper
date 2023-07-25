@@ -197,7 +197,7 @@ function TableHeadColumn({
         <Text
           type="secondary"
           style={
-            column.filters?.filter(({enabled}) => enabled).length
+            column.filters?.some(({enabled}) => enabled)
               ? {color: theme.primaryColor, fontWeight: 'bold'}
               : {}
           }>

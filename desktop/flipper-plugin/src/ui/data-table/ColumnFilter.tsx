@@ -77,6 +77,7 @@ export function FilterIcon({
           />
           <Button
             onClick={onAddFilter}
+            disabled={!input}
             title="Add filter"
             type="ghost"
             style={{padding: '4px 8px'}}>
@@ -196,6 +197,10 @@ export function FilterIcon({
       </Menu.Item>
     </Menu>
   );
+
+  if (!column.filters) {
+    return null;
+  }
 
   return (
     <Dropdown overlay={menu} trigger={['click']}>

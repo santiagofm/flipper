@@ -199,8 +199,10 @@ export const dataTableManagerReducer = produce<
     }
     case 'resizeColumn': {
       const {column, width} = action;
-      const col = draft.columns.find((c) => c.key === column)!;
-      col.width = width;
+      const col = draft.columns.find((c) => c.key === column);
+      if (col) {
+        col.width = width;
+      }
       break;
     }
     case 'sortColumn': {
@@ -721,7 +723,7 @@ export function computeDataTableFilter(
 
   return function dataTableFilter(item: any) {
     for (const column of filteringColumns) {
-      const rowMatchesFilter = column.filters!.some((f) => {
+      const rowMatchesFilter = column.filters?.some((f) => {
         if (!f.enabled) {
           return false;
         }
